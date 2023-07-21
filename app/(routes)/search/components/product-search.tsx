@@ -1,8 +1,10 @@
 "use client";
 import getProducts from "@/actions/get-products";
 import { Container } from "@/components/export";
+import NoResults from "@/components/ui/no-results";
 import ProductCard from "@/components/ui/product-card";
 import { Product } from "@/types";
+import { SearchIcon } from "lucide-react";
 import React, { useState, useEffect, ChangeEvent } from "react";
 import toast from "react-hot-toast";
 
@@ -17,7 +19,7 @@ const ProductSearch: React.FC = () => {
 
   const fetchProducts = async () => {
     try {
-      const productsdata = await getProducts(15);
+      const productsdata = await getProducts(30);
       setProducts(productsdata);
     } catch (error) {
       toast.error("Someting went wrong");
@@ -44,17 +46,22 @@ const ProductSearch: React.FC = () => {
     <div className="bg-white">
       <Container>
         <div className="px-4 py-10 sm:px-6 lg:px-8">
-          <input
-            type="text"
-            placeholder="Search for products..."
-            value={searchTerm}
-            onChange={handleSearch}
-          />
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-5">
-          {filteredProducts.map((product) => (
-            <ProductCard data={product} />
-          ))}
+          <div className=" mb-4 border  border-black p-4 flex justify-between items-center rounded-lg">
+            <input
+              type="text"
+              placeholder="Search for products..."
+              value={searchTerm}
+              onChange={handleSearch}
+              className="focus:outline-none w-full"
+            />
+            <SearchIcon size={25} />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
+            {filteredProducts.map((product) => (
+              <ProductCard data={product} />
+            ))}
+          </div>
+          {filteredProducts.length === 0 && <NoResults />}
         </div>
       </Container>
     </div>

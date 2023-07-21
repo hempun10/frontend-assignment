@@ -17,11 +17,6 @@ const Navlinks = () => {
       label: "Search",
       active: pathname === "/search",
     },
-    {
-      href: "/shop",
-      label: "Shop",
-      active: pathname === "/shop",
-    },
   ];
   return (
     <nav className="mx-6 flex items-center space-x-4 lg:space-x-6">
