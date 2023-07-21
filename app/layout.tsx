@@ -1,4 +1,4 @@
-import { Navbar } from "@/components/export";
+import { Footer, Navbar } from "@/components/export";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -24,6 +24,7 @@ export default function RootLayout({
         <ToastProvider />
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

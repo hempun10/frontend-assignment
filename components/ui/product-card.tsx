@@ -16,7 +16,7 @@ interface ProductCard {
   data: Product;
 }
 
-const ProductCard: React.FC<ProductCard> = ({ data }) => {
+const ProductCard = ({ data }: ProductCard) => {
   const previewModal = usePreviewModal();
   const cart = useCart();
   const router = useRouter();
